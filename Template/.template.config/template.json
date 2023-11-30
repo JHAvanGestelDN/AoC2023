@@ -1,0 +1,12 @@
+{
+  "author": "Jaap van Gestel",
+  "name": "Day",
+  "description": "An application to solve the puzzle of the day.",
+  "identity": "AoCConsoleApp.1.0",
+  "shortName": "consoleAoC",
+  "tags": {
+    "language": "C#",
+    "type": "project"
+  },
+  "sourceName": "Template"
+}
