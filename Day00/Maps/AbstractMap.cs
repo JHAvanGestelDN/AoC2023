@@ -1,7 +1,7 @@
 ﻿using Day00.Nodes;
 namespace Day00.Maps
 {
-    public abstract class AbstractMap<T, V> where T : GenericNode<T, V>
+    public abstract class AbstractMap<T, TV> where T : GenericNode<T, TV>
     {
         protected AbstractMap(int x, int y)
         {

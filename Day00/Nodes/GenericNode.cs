@@ -1,8 +1,8 @@
 ﻿namespace Day00.Nodes
 {
-    public class GenericNode<T, V>
+    public class GenericNode<T, TV>
     {
-        protected GenericNode(Coordinate coordinate, V value)
+        protected GenericNode(Coordinate coordinate, TV value)
         {
             Coordinate = coordinate;
             Value = value;
@@ -10,15 +10,15 @@
 
         public Coordinate Coordinate { get; }
         public List<T> Neighbours { get; } = new List<T>();
-        public V Value { get; set; }
+        public TV Value { get; set; }
 
         //Pathfinding attributes
-        public GenericNode<T, V> previous { get; set; }
-        public int cost { get; set; } = Int32.MaxValue;
-        public int heuristic { get; set; } = Int32.MaxValue;
+        public GenericNode<T, TV> Previous { get; set; }
+        public int Cost { get; set; } = Int32.MaxValue;
+        public int Heuristic { get; set; } = Int32.MaxValue;
     
 
-        public int CalculateHeuristic(GenericNode<T, V> goal)
+        public int CalculateHeuristic(GenericNode<T, TV> goal)
         {
             return Math.Abs(Coordinate.X - goal.Coordinate.X) + Math.Abs(Coordinate.Y - goal.Coordinate.Y);
         }
@@ -54,7 +54,7 @@
                 Neighbours.Add(map[Coordinate.X + 1, Coordinate.Y + 1]);
         }
 
-        protected bool Equals(GenericNode<T, V> other)
+        protected bool Equals(GenericNode<T, TV> other)
         {
             return Coordinate.Equals(other.Coordinate);
         }
@@ -66,15 +66,15 @@
                 return true;
             if (obj.GetType() != this.GetType())
                 return false;
-            return Equals((GenericNode<T, V>)obj);
+            return Equals((GenericNode<T, TV>)obj);
         }
         public override int GetHashCode()
         {
             return Coordinate.GetHashCode();
         }
-        private sealed class CoordinateEqualityComparer : IEqualityComparer<GenericNode<T, V>>
+        private sealed class CoordinateEqualityComparer : IEqualityComparer<GenericNode<T, TV>>
         {
-            public bool Equals(GenericNode<T, V> x, GenericNode<T, V> y)
+            public bool Equals(GenericNode<T, TV> x, GenericNode<T, TV> y)
             {
                 if (ReferenceEquals(x, y))
                     return true;
@@ -86,11 +86,11 @@
                     return false;
                 return x.Coordinate.Equals(y.Coordinate);
             }
-            public int GetHashCode(GenericNode<T, V> obj)
+            public int GetHashCode(GenericNode<T, TV> obj)
             {
                 return obj.Coordinate.GetHashCode();
             }
         }
-        public static IEqualityComparer<GenericNode<T, V>> coordinateComparer { get; } = new CoordinateEqualityComparer();
+        public static IEqualityComparer<GenericNode<T, TV>> CoordinateComparer { get; } = new CoordinateEqualityComparer();
     }
 }

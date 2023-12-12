@@ -87,7 +87,7 @@ namespace Day00.Maps
             {
                 for (var j = 0; j < Map.GetLength(1); j++)
                 {
-                    Map[i, j].cost = Int32.MaxValue;
+                    Map[i, j].Cost = Int32.MaxValue;
                 }
             }
         }
