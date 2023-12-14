@@ -74,6 +74,24 @@ namespace Day00
             return new string(charArray);
         }
 
+        /*Methods to calculate the least common multiple*/
+        public static long LCM(IEnumerable<long> numbers) {
+            return numbers.Aggregate(LCM);
+        }
+
+        public static long LCM(long a, long b) {
+            return a * b / GCD(a, b);
+        }
+
+        public static long GCD(long a, long b) {
+            while (b != 0) {
+                long t = b;
+                b = a % b;
+                a = t;
+            }
+            return a;
+        }
+
         abstract protected long SolveOne();
         abstract protected long SolveTwo();
     }
